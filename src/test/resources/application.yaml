@@ -6,7 +6,6 @@ KAFKA_AUTO_OFFSET_RESET: "earliest"
 SERVICEUSER_USERNAME: "user"
 SERVICEUSER_PASSWORD: "pwd"
 
-
 spring:
   profiles:
     active: test
@@ -21,17 +20,3 @@ spring:
       max-poll-records: 1
       auto-offset-reset: latest
       enable-auto-commit: false
-
-flex.fss.proxy.url: http://flex-fss-proxy
-
-no.nav.security.jwt:
-  client:
-    registration:
-      flex-fss-proxy-client-credentials:
-        token-endpoint-url: http://localhost:${mock-oauth2-server.port}/azureator/token
-        grant-type: client_credentials
-        scope: flex-fss-proxy
-        authentication:
-          client-id: client-id
-          client-secret: secretzz
-          client-auth-method: client_secret_basic
