@@ -30,9 +30,6 @@ spec:
     limits:
       cpu: 500m
       memory: 600Mi
-    requests:
-      cpu: 200m
-      memory: 400Mi
   accessPolicy:
     outbound:
       external:
@@ -41,10 +38,6 @@ spec:
       {{/each}}
   kafka:
     pool: {{kafkaPool}}
-  azure:
-    application:
-      enabled: true
-      tenant: {{azureTenant}}
   env:
   {{#each env}}
      - name: {{@key}}

@@ -11,10 +11,6 @@ plugins {
 group = "no.nav.helse.flex"
 version = "1.0.0"
 description = "sykepengesoknad-lovme-filter"
-java.sourceCompatibility = JavaVersion.VERSION_16
-
-ext["nimbus-jose-jwt.version"] = "8.20" // https://nav-it.slack.com/archives/C01381BAT62/p1611056940004800
-ext["okhttp3.version"] = "4.9.0" // For at token support testen kjører skal kjøre.
 
 val githubUser: String by project
 val githubPassword: String by project
@@ -38,9 +34,7 @@ repositories {
 }
 
 val testContainersVersion = "1.15.3"
-val tokenSupportVersion = "1.3.7"
 val logstashLogbackEncoderVersion = "6.6"
-val kluentVersion = "1.65"
 val syfoKafkaVersion = "2021.07.20-09.39-6be2c52c"
 
 dependencies {
@@ -49,15 +43,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.kafka:spring-kafka")
-    implementation("no.nav.security:token-client-spring:$tokenSupportVersion")
-    implementation("no.nav.security:token-validation-spring:$tokenSupportVersion")
     implementation("org.slf4j:slf4j-api")
     implementation("org.springframework.boot:spring-boot-starter-logging")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("no.nav.syfo.kafka:felles:$syfoKafkaVersion")
-    implementation("org.aspectj:aspectjrt")
-    implementation("org.aspectj:aspectjweaver")
     implementation("org.hibernate.validator:hibernate-validator")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("io.micrometer:micrometer-registry-prometheus")
@@ -65,7 +55,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:kafka:$testContainersVersion")
     testImplementation("org.testcontainers:junit-jupiter:$testContainersVersion")
-    testImplementation("org.awaitility:awaitility")
     testImplementation("org.hamcrest:hamcrest-library")
 }
 
