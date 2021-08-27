@@ -13,7 +13,7 @@ class LovMeFilterService {
 
     fun filtrerSoknad(soknadString: String) {
         val soknad = soknadString.tilSykepengesoknadDTO()
-        log.info("Mottok søknad ${soknad.id} med status ${soknad.status}")
+        log.debug("Mottok søknad ${soknad.id} med status ${soknad.status}")
     }
 
     fun String.tilSykepengesoknadDTO(): SykepengesoknadDTO = objectMapper.readValue(this)
