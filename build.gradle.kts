@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.4.5"
+    id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
-    kotlin("jvm") version "1.5.0"
-    kotlin("plugin.spring") version "1.5.0"
+    kotlin("jvm") version "1.5.30"
+    kotlin("plugin.spring") version "1.5.30"
 }
 
 group = "no.nav.helse.flex"
@@ -33,7 +33,7 @@ repositories {
     }
 }
 
-val testContainersVersion = "1.15.3"
+val testContainersVersion = "1.16.0"
 val logstashLogbackEncoderVersion = "6.6"
 val syfoKafkaVersion = "2021.07.20-09.39-6be2c52c"
 

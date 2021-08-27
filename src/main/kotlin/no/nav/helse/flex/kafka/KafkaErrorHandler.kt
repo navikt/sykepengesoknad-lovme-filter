@@ -18,9 +18,9 @@ class KafkaErrorHandler : SeekToCurrentErrorHandler(
     val log = logger()
 
     override fun handle(
-        thrownException: Exception,
-        records: List<ConsumerRecord<*, *>>?,
-        consumer: Consumer<*, *>?,
+        thrownException: java.lang.Exception,
+        records: MutableList<ConsumerRecord<*, *>>?,
+        consumer: Consumer<*, *>,
         container: MessageListenerContainer
     ) {
         log.error("Feil i listener:", thrownException)
@@ -30,7 +30,6 @@ class KafkaErrorHandler : SeekToCurrentErrorHandler(
                 "Feil i prossessering av record med offset: ${record.offset()}, key: ${record.key()}",
             )
         }
-
         super.handle(thrownException, records, consumer, container)
     }
 }
