@@ -1,0 +1,26 @@
+apiVersion: kafka.nais.io/v1
+kind: Topic
+metadata:
+  name: sykepengesoknad-lovme-filter
+  namespace: flex
+  labels:
+    team: flex
+  annotations:
+    dcat.data.nav.no/title: "flex.sykpengesoknad-lovme-filter"
+    dcat.data.nav.no/description: "Topic for filterte sykepengesøknader sent til LovMe"
+spec:
+  pool: {{kafkaPool}}
+  config:
+    cleanupPolicy: delete
+    minimumInSyncReplicas: 1
+    partitions: 3
+    replication: 3
+    retentionBytes: -1    # Messages will never get deleted because of disk space
+    retentionHours: 6576  # Messages are stored for 6 months
+  acl:
+    - team: flex
+      application: sykepengesoknad-lovme-filter
+      access: write
+    - team: lovme
+      application: wip
+      access: read
