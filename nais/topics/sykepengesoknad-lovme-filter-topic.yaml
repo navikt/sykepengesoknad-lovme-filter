@@ -22,5 +22,5 @@ spec:
       application: sykepengesoknad-lovme-filter
       access: write
     - team: lovme
-      application: wip
+      application: medlemskap-sykepenger-listener
       access: read

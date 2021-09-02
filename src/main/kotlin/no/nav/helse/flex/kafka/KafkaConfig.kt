@@ -1,6 +1,8 @@
+@file:Suppress("SpringJavaInjectionPointsAutowiringInspection")
+
 package no.nav.helse.flex.kafka
 
-import no.nav.helse.flex.service.LovmeFilterDTO
+import no.nav.helse.flex.service.LovmeSoknadDTO
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -25,8 +27,6 @@ class KafkaConfig(
     @Value("\${KAFKA_CREDSTORE_PASSWORD}") private val kafkaCredstorePassword: String,
     @Value("\${KAFKA_KEYSTORE_PATH}") private val kafkaKeystorePath: String,
 ) {
-    private val JAVA_KEYSTORE = "JKS"
-    private val PKCS12 = "PKCS12"
 
     @Bean
     fun consumerFactory(properties: KafkaProperties): ConsumerFactory<String, String> {
@@ -46,7 +46,7 @@ class KafkaConfig(
     }
 
     @Bean
-    fun lovmeFilterProducer(): KafkaProducer<String, LovmeFilterDTO> {
+    fun lovmeFilterProducer(): KafkaProducer<String, LovmeSoknadDTO> {
         val kafkaConfig = mapOf(
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.java,
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to JacksonKafkaSerializer::class.java,
@@ -54,7 +54,7 @@ class KafkaConfig(
             ProducerConfig.RETRIES_CONFIG to 10,
             ProducerConfig.RETRY_BACKOFF_MS_CONFIG to 100
         ) + commonConfig()
-        return KafkaProducer<String, LovmeFilterDTO>(kafkaConfig)
+        return KafkaProducer<String, LovmeSoknadDTO>(kafkaConfig)
     }
 
     fun commonConfig() = mapOf(
@@ -64,8 +64,8 @@ class KafkaConfig(
     private fun securityConfig() = mapOf(
         CommonClientConfigs.SECURITY_PROTOCOL_CONFIG to kafkaSecurityProtocol,
         SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG to "", // Disable server host name verification
-        SslConfigs.SSL_TRUSTSTORE_TYPE_CONFIG to JAVA_KEYSTORE,
-        SslConfigs.SSL_KEYSTORE_TYPE_CONFIG to PKCS12,
+        SslConfigs.SSL_TRUSTSTORE_TYPE_CONFIG to "JKS",
+        SslConfigs.SSL_KEYSTORE_TYPE_CONFIG to "PKCS12",
         SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG to kafkaTruststorePath,
         SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG to kafkaCredstorePassword,
         SslConfigs.SSL_KEYSTORE_LOCATION_CONFIG to kafkaKeystorePath,
@@ -74,5 +74,12 @@ class KafkaConfig(
     )
 }
 
-const val FLEX_SYKEPENGESOKNAD_TOPIC = "flex.sykepengesoknad"
+/**
+ * Topic applikasjonen lytter på.
+ */
+const val SYKEPENGESOKNAD_TOPIC = "flex.sykepengesoknad"
+
+/**
+ * Topic applikasjonen videresender meldinger på.
+ */
 const val LOVME_FILTER_TOPIC = "flex.sykepengesoknad-lovme-filter"

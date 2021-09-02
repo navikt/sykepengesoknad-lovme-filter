@@ -8,6 +8,11 @@ import org.springframework.kafka.listener.SeekToCurrentErrorHandler
 import org.springframework.stereotype.Component
 import org.springframework.util.backoff.ExponentialBackOff
 
+/**
+ * Klasse for håndtering av feil fra Kafka.
+ *
+ * @see KafkaConfig
+ */
 @Component
 class KafkaErrorHandler : SeekToCurrentErrorHandler(
     null,

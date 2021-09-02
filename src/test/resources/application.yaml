@@ -9,6 +9,8 @@ SERVICEUSER_PASSWORD: "pwd"
 spring:
   profiles:
     active: test
+  main:
+    banner-mode: off
   kafka:
     bootstrap-servers: ${KAFKA_BROKERS}
     properties:

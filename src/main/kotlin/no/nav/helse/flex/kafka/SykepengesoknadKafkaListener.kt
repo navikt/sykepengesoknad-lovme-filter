@@ -7,6 +7,11 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.stereotype.Component
 
+/**
+ * Klasse for å lytte på topic for inkommende sykepengesøknader.
+ *
+ * @see SYKEPENGESOKNAD_TOPIC
+ */
 @Component
 class SykepengesoknadKafkaListener(
     private val lovMeFilterService: LovmeFilterService,
@@ -14,18 +19,15 @@ class SykepengesoknadKafkaListener(
 
     private val log = logger()
 
-    @KafkaListener(topics = [FLEX_SYKEPENGESOKNAD_TOPIC])
+    @KafkaListener(topics = [SYKEPENGESOKNAD_TOPIC])
     fun listen(consumerRecord: ConsumerRecord<String, String>, acknowledgment: Acknowledgment) {
         try {
-            log.debug("Mottok melding med key: {}", consumerRecord.key())
-            lovMeFilterService.filtrerLovmeSoknad(consumerRecord.value())
+            lovMeFilterService.sendLovmeSoknad(consumerRecord.value())
             acknowledgment.acknowledge()
         } catch (e: Exception) {
             log.error(
-                "Feil ved mottak av record med " +
-                    "key: ${consumerRecord.key()}, " +
-                    "offset: ${consumerRecord.offset()}, " +
-                    "partition: ${consumerRecord.partition()}.",
+                "Feil ved mottak av record med [key=${consumerRecord.key()}, [offset=${consumerRecord.offset()}] og " +
+                    "[partition=${consumerRecord.partition()}].",
                 e
             )
             throw e

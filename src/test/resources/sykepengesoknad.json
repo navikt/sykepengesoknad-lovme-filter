@@ -1,27 +1,27 @@
 {
-  "id": "4d4e41de-5c19-4e2d-b408-b809c37e6cfa",
+  "id": "534eecaf-9a5a-439f-b97f-0c2fbe9d9b40",
   "type": "ARBEIDSTAKERE",
-  "status": "NY",
+  "status": "SENDT",
   "fnr": "01010112345",
-  "sykmeldingId": "a09276e0-e5ee-4604-9994-b6ad2e568dea",
+  "sykmeldingId": "8a4edb64-2fc2-41be-8447-4d07fd913b4d",
   "arbeidsgiver": {
     "navn": "HÅRREISENDE FRISØR",
     "orgnummer": "839942907"
   },
   "arbeidssituasjon": "ARBEIDSTAKER",
-  "korrigerer": null,
+  "korrigerer": "f6d4df50-59d7-4a93-8de9-aa5144439e4e",
   "korrigertAv": null,
   "soktUtenlandsopphold": null,
   "arbeidsgiverForskutterer": null,
-  "fom": "2021-08-14",
-  "tom": "2021-08-29",
+  "fom": "2021-08-21",
+  "tom": "2021-09-05",
   "dodsdato": null,
-  "startSyketilfelle": "2021-08-14",
+  "startSyketilfelle": "2021-08-21",
   "arbeidGjenopptatt": null,
-  "sykmeldingSkrevet": "2021-08-14T15:52:55.478",
-  "opprettet": "2021-08-30T16:04:08.03718",
+  "sykmeldingSkrevet": "2021-08-21T10:27:48.984",
+  "opprettet": "2021-09-06T10:28:34.680802",
   "sendtNav": null,
-  "sendtArbeidsgiver": null,
+  "sendtArbeidsgiver": "2021-09-06T10:30:39.982698",
   "egenmeldinger": [],
   "fravarForSykmeldingen": [],
   "papirsykmeldinger": [],
@@ -29,8 +29,8 @@
   "andreInntektskilder": [],
   "soknadsperioder": [
     {
-      "fom": "2021-08-14",
-      "tom": "2021-08-29",
+      "fom": "2021-08-21",
+      "tom": "2021-09-05",
       "sykmeldingsgrad": 100,
       "faktiskGrad": null,
       "avtaltTimer": null,
@@ -49,27 +49,64 @@
       "max": null,
       "svartype": "CHECKBOX_PANEL",
       "kriterieForVisningAvUndersporsmal": null,
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "CHECKED"
+        }
+      ],
       "undersporsmal": []
     },
     {
-      "id": "2",
-      "tag": "TILBAKE_I_ARBEID",
-      "sporsmalstekst": "Var du tilbake i fullt arbeid hos HÅRREISENDE FRISØR i løpet av perioden 14. - 29. august 2021?",
+      "id": "28",
+      "tag": "FRAVAR_FOR_SYKMELDINGEN",
+      "sporsmalstekst": "Var du syk og borte fra jobb mellom 5. - 20. august 2021?",
       "undertekst": null,
       "min": null,
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
+      "undersporsmal": [
+        {
+          "id": "29",
+          "tag": "FRAVAR_FOR_SYKMELDINGEN_NAR",
+          "sporsmalstekst": "Hvilke dager var du syk og borte fra jobb? Du trenger bare oppgi dager før 21. august 2021.",
+          "undertekst": null,
+          "min": "2021-02-21",
+          "max": "2021-08-20",
+          "svartype": "PERIODER",
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "tag": "TILBAKE_I_ARBEID",
+      "sporsmalstekst": "Var du tilbake i fullt arbeid hos HÅRREISENDE FRISØR i løpet av perioden 21. august - 5. september 2021?",
+      "undertekst": null,
+      "min": null,
+      "max": null,
+      "svartype": "JA_NEI",
+      "kriterieForVisningAvUndersporsmal": "JA",
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "3",
           "tag": "TILBAKE_NAR",
           "sporsmalstekst": "Når begynte du å jobbe igjen?",
           "undertekst": null,
-          "min": "2021-08-14",
-          "max": "2021-08-29",
+          "min": "2021-08-21",
+          "max": "2021-09-05",
           "svartype": "DATO",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
@@ -80,21 +117,25 @@
     {
       "id": "4",
       "tag": "FERIE_V2",
-      "sporsmalstekst": "Hadde du ferie i tidsrommet 14. - 29. august 2021?",
+      "sporsmalstekst": "Hadde du ferie i tidsrommet 21. august - 5. september 2021?",
       "undertekst": null,
       "min": null,
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "5",
           "tag": "FERIE_NAR_V2",
           "sporsmalstekst": "Når tok du ut ferie?",
           "undertekst": null,
-          "min": "2021-08-14",
-          "max": "2021-08-29",
+          "min": "2021-08-21",
+          "max": "2021-09-05",
           "svartype": "PERIODER",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
@@ -105,21 +146,25 @@
     {
       "id": "6",
       "tag": "PERMISJON_V2",
-      "sporsmalstekst": "Tok du permisjon mens du var sykmeldt 14. - 29. august 2021?",
+      "sporsmalstekst": "Tok du permisjon mens du var sykmeldt 21. august - 5. september 2021?",
       "undertekst": null,
       "min": null,
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "7",
           "tag": "PERMISJON_NAR_V2",
           "sporsmalstekst": "Når tok du permisjon?",
           "undertekst": null,
-          "min": "2021-08-14",
-          "max": "2021-08-29",
+          "min": "2021-08-21",
+          "max": "2021-09-05",
           "svartype": "PERIODER",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
@@ -130,25 +175,137 @@
     {
       "id": "8",
       "tag": "UTLAND_V2",
-      "sporsmalstekst": "Var du på reise utenfor EØS mens du var sykmeldt 14. - 29. august 2021?",
+      "sporsmalstekst": "Var du på reise utenfor EØS mens du var sykmeldt 21. august - 5. september 2021?",
       "undertekst": null,
       "min": null,
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "9",
           "tag": "UTLAND_NAR_V2",
           "sporsmalstekst": "Når var du utenfor EØS?",
           "undertekst": null,
-          "min": "2021-08-14",
-          "max": "2021-08-29",
+          "min": "2021-08-21",
+          "max": "2021-09-05",
           "svartype": "PERIODER",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
           "undersporsmal": []
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "tag": "ARBEID_UTENFOR_NORGE",
+      "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
+      "undertekst": null,
+      "min": null,
+      "max": null,
+      "svartype": "JA_NEI",
+      "kriterieForVisningAvUndersporsmal": null,
+      "svar": [
+        {
+          "verdi": "JA"
+        }
+      ],
+      "undersporsmal": []
+    },
+    {
+      "id": "35",
+      "tag": "JOBBET_DU_100_PROSENT_0",
+      "sporsmalstekst": "I perioden 21. august - 5. september 2021 var du 100 % sykmeldt fra HÅRREISENDE FRISØR. Jobbet du noe i denne perioden?",
+      "undertekst": null,
+      "min": null,
+      "max": null,
+      "svartype": "JA_NEI",
+      "kriterieForVisningAvUndersporsmal": "JA",
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
+      "undersporsmal": [
+        {
+          "id": "36",
+          "tag": "HVOR_MANGE_TIMER_PER_UKE_0",
+          "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis når du er frisk? Varierer det, kan du oppgi gjennomsnittet.",
+          "undertekst": "timer per uke",
+          "min": "1",
+          "max": "150",
+          "svartype": "TALL",
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        },
+        {
+          "id": "37",
+          "tag": "HVOR_MYE_HAR_DU_JOBBET_0",
+          "sporsmalstekst": "Hvor mye jobbet du totalt 21. august - 5. september 2021 hos HÅRREISENDE FRISØR?",
+          "undertekst": null,
+          "min": null,
+          "max": null,
+          "svartype": "RADIO_GRUPPE_TIMER_PROSENT",
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": [
+            {
+              "id": "38",
+              "tag": "HVOR_MYE_PROSENT_0",
+              "sporsmalstekst": "prosent",
+              "undertekst": null,
+              "min": null,
+              "max": null,
+              "svartype": "RADIO",
+              "kriterieForVisningAvUndersporsmal": "CHECKED",
+              "svar": [],
+              "undersporsmal": [
+                {
+                  "id": "39",
+                  "tag": "HVOR_MYE_PROSENT_VERDI_0",
+                  "sporsmalstekst": null,
+                  "undertekst": "prosent",
+                  "min": "1",
+                  "max": "99",
+                  "svartype": "TALL",
+                  "kriterieForVisningAvUndersporsmal": null,
+                  "svar": [],
+                  "undersporsmal": []
+                }
+              ]
+            },
+            {
+              "id": "40",
+              "tag": "HVOR_MYE_TIMER_0",
+              "sporsmalstekst": "timer",
+              "undertekst": null,
+              "min": null,
+              "max": null,
+              "svartype": "RADIO",
+              "kriterieForVisningAvUndersporsmal": "CHECKED",
+              "svar": [],
+              "undersporsmal": [
+                {
+                  "id": "41",
+                  "tag": "HVOR_MYE_TIMER_VERDI_0",
+                  "sporsmalstekst": null,
+                  "undertekst": "timer totalt",
+                  "min": "1",
+                  "max": "343",
+                  "svartype": "TALL",
+                  "kriterieForVisningAvUndersporsmal": null,
+                  "svar": [],
+                  "undersporsmal": []
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -161,7 +318,11 @@
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "11",
@@ -258,7 +419,8 @@
               "max": null,
               "svartype": "CHECKBOX",
               "kriterieForVisningAvUndersporsmal": "CHECKED",
-              "svar": [],
+              "svar": [
+              ],
               "undersporsmal": [
                 {
                   "id": "19",
@@ -318,13 +480,17 @@
     {
       "id": "23",
       "tag": "UTDANNING",
-      "sporsmalstekst": "Har du vært under utdanning i løpet av perioden 14. - 29. august 2021?",
+      "sporsmalstekst": "Har du vært under utdanning i løpet av perioden 21. august - 5. september 2021?",
       "undertekst": null,
       "min": null,
       "max": null,
       "svartype": "JA_NEI",
       "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
       "undersporsmal": [
         {
           "id": "24",
@@ -332,7 +498,7 @@
           "sporsmalstekst": "Når startet du på utdanningen?",
           "undertekst": null,
           "min": null,
-          "max": "2021-08-29",
+          "max": "2021-09-05",
           "svartype": "DATO",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
@@ -346,6 +512,64 @@
           "min": null,
           "max": null,
           "svartype": "JA_NEI",
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "tag": "PERMITTERT_NAA",
+      "sporsmalstekst": "Var du permittert av arbeidsgiveren din da du ble sykmeldt 21. august 2021?",
+      "undertekst": null,
+      "min": null,
+      "max": null,
+      "svartype": "JA_NEI",
+      "kriterieForVisningAvUndersporsmal": "JA",
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
+      "undersporsmal": [
+        {
+          "id": "32",
+          "tag": "PERMITTERT_NAA_NAR",
+          "sporsmalstekst": "Velg første dag i permitteringen",
+          "undertekst": null,
+          "min": "2020-02-01",
+          "max": "2021-09-05",
+          "svartype": "DATO",
+          "kriterieForVisningAvUndersporsmal": null,
+          "svar": [],
+          "undersporsmal": []
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "tag": "PERMITTERT_PERIODE",
+      "sporsmalstekst": "Har du vært permittert av arbeidsgiveren din i mer enn 14 sammenhengende dager mellom 21. juli - 21. august 2021?",
+      "undertekst": null,
+      "min": null,
+      "max": null,
+      "svartype": "JA_NEI",
+      "kriterieForVisningAvUndersporsmal": "JA",
+      "svar": [
+        {
+          "verdi": "NEI"
+        }
+      ],
+      "undersporsmal": [
+        {
+          "id": "34",
+          "tag": "PERMITTERT_PERIODE_NAR",
+          "sporsmalstekst": null,
+          "undertekst": null,
+          "min": "2021-07-21",
+          "max": "2021-08-21",
+          "svartype": "PERIODER",
           "kriterieForVisningAvUndersporsmal": null,
           "svar": [],
           "undersporsmal": []
@@ -373,192 +597,17 @@
       "max": null,
       "svartype": "CHECKBOX_PANEL",
       "kriterieForVisningAvUndersporsmal": null,
-      "svar": [],
+      "svar": [
+        {
+          "verdi": "CHECKED"
+        }
+      ],
       "undersporsmal": []
-    },
-    {
-      "id": "28",
-      "tag": "FRAVAR_FOR_SYKMELDINGEN",
-      "sporsmalstekst": "Var du syk og borte fra jobb mellom 29. juli - 13. august 2021?",
-      "undertekst": null,
-      "min": null,
-      "max": null,
-      "svartype": "JA_NEI",
-      "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
-      "undersporsmal": [
-        {
-          "id": "29",
-          "tag": "FRAVAR_FOR_SYKMELDINGEN_NAR",
-          "sporsmalstekst": "Hvilke dager var du syk og borte fra jobb? Du trenger bare oppgi dager før 14. august 2021.",
-          "undertekst": null,
-          "min": "2021-02-14",
-          "max": "2021-08-13",
-          "svartype": "PERIODER",
-          "kriterieForVisningAvUndersporsmal": null,
-          "svar": [],
-          "undersporsmal": []
-        }
-      ]
-    },
-    {
-      "id": "30",
-      "tag": "ARBEID_UTENFOR_NORGE",
-      "sporsmalstekst": "Har du arbeidet i utlandet i løpet av de siste 12 månedene?",
-      "undertekst": null,
-      "min": null,
-      "max": null,
-      "svartype": "JA_NEI",
-      "kriterieForVisningAvUndersporsmal": null,
-      "svar": [],
-      "undersporsmal": []
-    },
-    {
-      "id": "31",
-      "tag": "PERMITTERT_NAA",
-      "sporsmalstekst": "Var du permittert av arbeidsgiveren din da du ble sykmeldt 14. august 2021?",
-      "undertekst": null,
-      "min": null,
-      "max": null,
-      "svartype": "JA_NEI",
-      "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
-      "undersporsmal": [
-        {
-          "id": "32",
-          "tag": "PERMITTERT_NAA_NAR",
-          "sporsmalstekst": "Velg første dag i permitteringen",
-          "undertekst": null,
-          "min": "2020-02-01",
-          "max": "2021-08-29",
-          "svartype": "DATO",
-          "kriterieForVisningAvUndersporsmal": null,
-          "svar": [],
-          "undersporsmal": []
-        }
-      ]
-    },
-    {
-      "id": "33",
-      "tag": "PERMITTERT_PERIODE",
-      "sporsmalstekst": "Har du vært permittert av arbeidsgiveren din i mer enn 14 sammenhengende dager mellom 14. juli - 14. august 2021?",
-      "undertekst": null,
-      "min": null,
-      "max": null,
-      "svartype": "JA_NEI",
-      "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
-      "undersporsmal": [
-        {
-          "id": "34",
-          "tag": "PERMITTERT_PERIODE_NAR",
-          "sporsmalstekst": null,
-          "undertekst": null,
-          "min": "2021-07-14",
-          "max": "2021-08-14",
-          "svartype": "PERIODER",
-          "kriterieForVisningAvUndersporsmal": null,
-          "svar": [],
-          "undersporsmal": []
-        }
-      ]
-    },
-    {
-      "id": "35",
-      "tag": "JOBBET_DU_100_PROSENT_0",
-      "sporsmalstekst": "I perioden 14. - 29. august 2021 var du 100 % sykmeldt fra HÅRREISENDE FRISØR. Jobbet du noe i denne perioden?",
-      "undertekst": null,
-      "min": null,
-      "max": null,
-      "svartype": "JA_NEI",
-      "kriterieForVisningAvUndersporsmal": "JA",
-      "svar": [],
-      "undersporsmal": [
-        {
-          "id": "36",
-          "tag": "HVOR_MANGE_TIMER_PER_UKE_0",
-          "sporsmalstekst": "Hvor mange timer i uken jobber du vanligvis når du er frisk? Varierer det, kan du oppgi gjennomsnittet.",
-          "undertekst": "timer per uke",
-          "min": "1",
-          "max": "150",
-          "svartype": "TALL",
-          "kriterieForVisningAvUndersporsmal": null,
-          "svar": [],
-          "undersporsmal": []
-        },
-        {
-          "id": "37",
-          "tag": "HVOR_MYE_HAR_DU_JOBBET_0",
-          "sporsmalstekst": "Hvor mye jobbet du totalt 14. - 29. august 2021 hos HÅRREISENDE FRISØR?",
-          "undertekst": null,
-          "min": null,
-          "max": null,
-          "svartype": "RADIO_GRUPPE_TIMER_PROSENT",
-          "kriterieForVisningAvUndersporsmal": null,
-          "svar": [],
-          "undersporsmal": [
-            {
-              "id": "38",
-              "tag": "HVOR_MYE_PROSENT_0",
-              "sporsmalstekst": "prosent",
-              "undertekst": null,
-              "min": null,
-              "max": null,
-              "svartype": "RADIO",
-              "kriterieForVisningAvUndersporsmal": "CHECKED",
-              "svar": [
-                {
-                  "verdi": "CHECKED"
-                }
-              ],
-              "undersporsmal": [
-                {
-                  "id": "39",
-                  "tag": "HVOR_MYE_PROSENT_VERDI_0",
-                  "sporsmalstekst": null,
-                  "undertekst": "prosent",
-                  "min": "1",
-                  "max": "99",
-                  "svartype": "TALL",
-                  "kriterieForVisningAvUndersporsmal": null,
-                  "svar": [],
-                  "undersporsmal": []
-                }
-              ]
-            },
-            {
-              "id": "40",
-              "tag": "HVOR_MYE_TIMER_0",
-              "sporsmalstekst": "timer",
-              "undertekst": null,
-              "min": null,
-              "max": null,
-              "svartype": "RADIO",
-              "kriterieForVisningAvUndersporsmal": "CHECKED",
-              "svar": [],
-              "undersporsmal": [
-                {
-                  "id": "41",
-                  "tag": "HVOR_MYE_TIMER_VERDI_0",
-                  "sporsmalstekst": null,
-                  "undertekst": "timer totalt",
-                  "min": "1",
-                  "max": "343",
-                  "svartype": "TALL",
-                  "kriterieForVisningAvUndersporsmal": null,
-                  "svar": [],
-                  "undersporsmal": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
     }
   ],
-  "avsendertype": null,
+  "avsendertype": "BRUKER",
   "ettersending": false,
-  "mottaker": null,
+  "mottaker": "ARBEIDSGIVER",
   "egenmeldtSykmelding": false,
   "harRedusertVenteperiode": null,
   "behandlingsdager": null,
