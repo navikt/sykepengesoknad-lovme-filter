@@ -17,4 +17,6 @@ abstract class AbstractContainerBaseTest {
             }
         }
     }
+
+    fun readResouceFile(fileName: String) = Application::class.java.getResource(fileName).readText(Charsets.UTF_8)
 }

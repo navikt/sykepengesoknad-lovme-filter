@@ -1,10 +1,7 @@
 package no.nav.helse.flex.service
 
-import com.fasterxml.jackson.module.kotlin.readValue
-import no.nav.helse.flex.objectMapper
 import no.nav.syfo.kafka.felles.SoknadsstatusDTO
 import no.nav.syfo.kafka.felles.SoknadstypeDTO
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -25,9 +22,3 @@ data class LovmeSoknadDTO(
     val tom: LocalDate? = null,
     val arbeidUtenforNorge: Boolean = false
 )
-
-fun SykepengesoknadDTO.tilString(): String = objectMapper.writeValueAsString(this)
-
-fun String.tilSykepengeSoknadDTO(): SykepengesoknadDTO = objectMapper.readValue(this)
-
-fun String.tilLovmeSoknadDTO(): LovmeSoknadDTO = objectMapper.readValue(this)

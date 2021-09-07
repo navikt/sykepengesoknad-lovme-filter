@@ -2,6 +2,7 @@ package no.nav.helse.flex.kafka
 
 import no.nav.helse.flex.logger
 import no.nav.helse.flex.service.LovmeFilterService
+import no.nav.helse.flex.service.tilSykepengeSoknadDTO
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
@@ -22,7 +23,7 @@ class SykepengesoknadKafkaListener(
     @KafkaListener(topics = [SYKEPENGESOKNAD_TOPIC])
     fun listen(consumerRecord: ConsumerRecord<String, String>, acknowledgment: Acknowledgment) {
         try {
-            lovMeFilterService.sendLovmeSoknad(consumerRecord.value())
+            lovMeFilterService.sendLovmeSoknad(consumerRecord.value().tilSykepengeSoknadDTO())
             acknowledgment.acknowledge()
         } catch (e: Exception) {
             log.error(
