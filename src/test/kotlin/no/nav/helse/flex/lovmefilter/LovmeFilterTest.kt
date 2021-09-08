@@ -60,6 +60,21 @@ class LovmeFilterTest {
 
         assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
     }
+
+    @Test
+    fun `Brukerspørsmål om arbeidet i utlandet returnerer NULL hvis spørsmålet ikke finnes`() {
+        val sykepengesoknadDTO = SykepengesoknadDTO(
+            ID,
+            SoknadstypeDTO.ARBEIDSTAKERE,
+            SoknadsstatusDTO.SENDT,
+            FNR,
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ANNET", svar = listOf(SvarDTO("NEI"))))
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
+    }
 }
 
 private const val ID = "4d4e41de-5c19-4e2d-b408-b809c37e6cfa"
