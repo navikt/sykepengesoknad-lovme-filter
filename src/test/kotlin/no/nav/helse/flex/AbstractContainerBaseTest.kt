@@ -1,9 +1,11 @@
 package no.nav.helse.flex
 
 import org.junit.jupiter.api.TestInstance
+import org.springframework.boot.test.context.SpringBootTest
 import org.testcontainers.containers.KafkaContainer
 import org.testcontainers.utility.DockerImageName
 
+@SpringBootTest(classes = [Application::class])
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class AbstractContainerBaseTest {
 
@@ -15,4 +17,6 @@ abstract class AbstractContainerBaseTest {
             }
         }
     }
+
+    fun readResouceFile(fileName: String) = Application::class.java.getResource(fileName).readText(Charsets.UTF_8)
 }
