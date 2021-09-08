@@ -1,4 +1,4 @@
-package no.nav.helse.flex.service
+package no.nav.helse.flex.lovmefilter
 
 import no.nav.syfo.kafka.felles.SoknadsstatusDTO
 import no.nav.syfo.kafka.felles.SoknadstypeDTO
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
  * Tester som verifiserer at regler for filtrering og videresending av sykepengesøknader til Team LovMe fungerer som
  * forventet.
  *
- * @see LovmeFilterService
+ * @see LovmeFilter
  */
 class LovmeFilterTest {
 

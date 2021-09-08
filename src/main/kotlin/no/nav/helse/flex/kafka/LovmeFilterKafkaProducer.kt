@@ -1,7 +1,7 @@
 package no.nav.helse.flex.kafka
 
 import no.nav.helse.flex.logger
-import no.nav.helse.flex.service.LovmeSoknadDTO
+import no.nav.helse.flex.lovmefilter.LovmeSoknadDTO
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer.RecordMetadata

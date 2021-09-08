@@ -1,4 +1,4 @@
-package no.nav.helse.flex.service
+package no.nav.helse.flex.lovmefilter
 
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.helse.flex.objectMapper
@@ -12,7 +12,7 @@ fun String.tilLovmeSoknadDTO(): LovmeSoknadDTO = objectMapper.readValue(this)
  * Extension for SykepengesoknadDTO som mapper til LovmeSoknadDTO, inkludert logikk for hvordan
  * brukerspørsmål om ARBEID_UTENFOR_NORGE skal håndteres.
  *
- * @see LovmeFilterService
+ * @see LovmeFilter
  */
 fun SykepengesoknadDTO.tilLovmeSoknadDTO(): LovmeSoknadDTO {
     // Hent svar på brukerspørsmål om arbeid utenfor Norge. Det skal være bare ett svar spørsmålet, så det

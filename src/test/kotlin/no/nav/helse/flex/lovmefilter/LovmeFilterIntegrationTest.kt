@@ -1,4 +1,4 @@
-package no.nav.helse.flex.service
+package no.nav.helse.flex.lovmefilter
 
 import no.nav.helse.flex.AbstractContainerBaseTest
 import no.nav.helse.flex.hentRecords
@@ -23,7 +23,7 @@ import java.time.LocalDateTime
  * Integrasjonstest som starter applikasjonen og en Kafka Docker container. Verifiserer at meldinger blir sendt,
  * mottatt, filtrert og videresendt som forventet.
  *
- * @see LovmeFilterService
+ * @see LovmeFilter
  */
 class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
 
@@ -34,7 +34,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     private lateinit var sykepengeSoknadTestProducer: KafkaProducer<String, SykepengesoknadDTO>
 
     @Autowired
-    private lateinit var lovmeFilterService: LovmeFilterService
+    private lateinit var lovmeFilter: LovmeFilter
 
     @BeforeAll
     fun subscribeTilLovmeFilterTopic() {
@@ -84,7 +84,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
         )
 
         sykepengeSoknader.forEach { soknad ->
-            lovmeFilterService.sendLovmeSoknad(soknad)
+            lovmeFilter.sendLovmeSoknad(soknad)
         }
 
         val consumerRecord = lovmeFilterKafkaConsumer.ventPaaRecords(antall = 1).first()
@@ -106,7 +106,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
         )
 
         soknader.forEach { soknad ->
-            lovmeFilterService.sendLovmeSoknad(soknad)
+            lovmeFilter.sendLovmeSoknad(soknad)
         }
 
         val consumerRecord = lovmeFilterKafkaConsumer.ventPaaRecords(antall = 1).first()
@@ -123,7 +123,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
         )
 
         soknader.forEach { soknad ->
-            lovmeFilterService.sendLovmeSoknad(soknad)
+            lovmeFilter.sendLovmeSoknad(soknad)
         }
 
         val consumerRecord = lovmeFilterKafkaConsumer.ventPaaRecords(antall = 1).first()

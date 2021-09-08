@@ -1,4 +1,4 @@
-package no.nav.helse.flex.service
+package no.nav.helse.flex.lovmefilter
 
 import no.nav.helse.flex.kafka.LovmeFilterKafkaProducer
 import no.nav.syfo.kafka.felles.SoknadsstatusDTO
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
  * Service med eneste funksjonalitet å filtrere og videresende sykepengesøknaded til et topic opprettet for Team LovMe.
  */
 @Service
-class LovmeFilterService(
+class LovmeFilter(
     private val lovmeFilterProducer: LovmeFilterKafkaProducer
 ) {
     fun sendLovmeSoknad(sykepengeSoknadDTO: SykepengesoknadDTO) {
