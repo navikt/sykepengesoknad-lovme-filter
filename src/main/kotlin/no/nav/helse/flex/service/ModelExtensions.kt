@@ -21,7 +21,7 @@ fun SykepengesoknadDTO.tilLovmeSoknadDTO(): LovmeSoknadDTO {
     val arbeidUtenforNorge = when (sporsmalDTO?.svar?.get(0)?.verdi) {
         "JA" -> true
         "NEI" -> false
-        else -> false
+        else -> null
     }
 
     // Status og Type er typer som tilhører SykepengesoknadDTO, men de blir serialisert til JSON og ikke eksponert

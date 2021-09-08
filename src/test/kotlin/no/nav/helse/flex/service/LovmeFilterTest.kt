@@ -45,23 +45,9 @@ class LovmeFilterTest {
 
         assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(false)
     }
-
+    
     @Test
-    fun `Manglende svar på brukerspørsmål om arbeidet i utlandet blir mappet til FALSE`() {
-        val sykepengesoknadDTO = SykepengesoknadDTO(
-            ID,
-            SoknadstypeDTO.ARBEIDSTAKERE,
-            SoknadsstatusDTO.SENDT,
-            FNR
-        )
-
-        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
-
-        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(false)
-    }
-
-    @Test
-    fun `NULL som svar på brukerspørsmål om arbeidet i utlandet blir mappet til FALSE`() {
+    fun `Brukerspørsmål om arbeidet i utlandet er ikke besvart returnerer NULL`() {
         val sykepengesoknadDTO = SykepengesoknadDTO(
             ID,
             SoknadstypeDTO.ARBEIDSTAKERE,
@@ -72,7 +58,7 @@ class LovmeFilterTest {
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
 
-        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(false)
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
     }
 }
 

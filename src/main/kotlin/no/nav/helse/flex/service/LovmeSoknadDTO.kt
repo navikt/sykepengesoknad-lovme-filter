@@ -20,5 +20,6 @@ data class LovmeSoknadDTO(
     val sendtNav: LocalDateTime? = null,
     val fom: LocalDate? = null,
     val tom: LocalDate? = null,
-    val arbeidUtenforNorge: Boolean = false
+    // Kun True eller False hvis bruker har svar JA eller NEI.
+    val arbeidUtenforNorge: Boolean? = null
 )
