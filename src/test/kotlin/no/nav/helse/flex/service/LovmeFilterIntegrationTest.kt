@@ -17,6 +17,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.time.LocalDateTime
 
 /**
  * Integrasjonstest som starter applikasjonen og en Kafka Docker container. Verifiserer at meldinger blir sendt,
@@ -72,14 +73,14 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     @Test
     fun `Videresend kun søknader med type ARBEIDSTAKERE til LovMe topic`() {
         val sykepengeSoknader = listOf(
-            SykepengesoknadDTO(ID, SoknadstypeDTO.SELVSTENDIGE_OG_FRILANSERE, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.OPPHOLD_UTLAND, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ANNET_ARBEIDSFORHOLD, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSLEDIG, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.BEHANDLINGSDAGER, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.REISETILSKUDD, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.GRADERT_REISETILSKUDD, SoknadsstatusDTO.SENDT, FNR),
+            lagDto(SoknadstypeDTO.SELVSTENDIGE_OG_FRILANSERE, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.OPPHOLD_UTLAND, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ANNET_ARBEIDSFORHOLD, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSLEDIG, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.BEHANDLINGSDAGER, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.REISETILSKUDD, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.GRADERT_REISETILSKUDD, SoknadsstatusDTO.SENDT, SENDT_NAV)
         )
 
         sykepengeSoknader.forEach { soknad ->
@@ -95,12 +96,13 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     @Test
     fun `Videresend kun søknader med status SENDT til lovme topic`() {
         val soknader = listOf(
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.KORRIGERT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.NY, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.FREMTIDIG, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.AVBRUTT, FNR),
-            SykepengesoknadDTO(ID, SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SLETTET, FNR)
+
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.KORRIGERT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.NY, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.FREMTIDIG, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.AVBRUTT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SLETTET, SENDT_NAV)
         )
 
         soknader.forEach { soknad ->
@@ -112,7 +114,33 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
 
         assertThat(lovmeSoknadDTO.status).isEqualTo(SoknadsstatusDTO.SENDT)
     }
+
+    @Test
+    fun `Kun søknaded send til NAV blir Videresend til lovme topic`() {
+        val soknader = listOf(
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT, SENDT_NAV),
+            lagDto(SoknadstypeDTO.ARBEIDSTAKERE, SoknadsstatusDTO.SENDT),
+        )
+
+        soknader.forEach { soknad ->
+            lovmeFilterService.sendLovmeSoknad(soknad)
+        }
+
+        val consumerRecord = lovmeFilterKafkaConsumer.ventPaaRecords(antall = 1).first()
+        val lovmeSoknadDTO = consumerRecord.value().tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.sendtNav).isEqualTo(soknader[0].sendtNav)
+    }
+
+    private fun lagDto(
+        type: SoknadstypeDTO,
+        status: SoknadsstatusDTO,
+        sendtNav: LocalDateTime? = null
+    ): SykepengesoknadDTO {
+        return SykepengesoknadDTO(ID, type, status, FNR, sendtNav = sendtNav)
+    }
 }
 
 private const val ID = "4d4e41de-5c19-4e2d-b408-b809c37e6cfa"
 private const val FNR = "01010112345"
+private val SENDT_NAV = LocalDateTime.of(2021, 1, 1, 12, 0)

@@ -24,4 +24,6 @@ class LovmeFilterService(
  * Funksjon med som avgjør om en sykepengesøknad skal videresende til Team LovMe.
  */
 fun soknadSkalSendeTeamLovMe(sykepengeSoknadDTO: SykepengesoknadDTO) =
-    sykepengeSoknadDTO.status == SoknadsstatusDTO.SENDT && sykepengeSoknadDTO.type == SoknadstypeDTO.ARBEIDSTAKERE
+    sykepengeSoknadDTO.status == SoknadsstatusDTO.SENDT &&
+        sykepengeSoknadDTO.type == SoknadstypeDTO.ARBEIDSTAKERE &&
+        sykepengeSoknadDTO.sendtNav != null

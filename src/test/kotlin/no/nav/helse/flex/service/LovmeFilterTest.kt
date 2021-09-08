@@ -45,7 +45,7 @@ class LovmeFilterTest {
 
         assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(false)
     }
-    
+
     @Test
     fun `Brukerspørsmål om arbeidet i utlandet er ikke besvart returnerer NULL`() {
         val sykepengesoknadDTO = SykepengesoknadDTO(
