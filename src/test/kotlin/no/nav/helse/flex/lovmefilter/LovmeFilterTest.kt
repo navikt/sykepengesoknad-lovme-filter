@@ -1,11 +1,9 @@
 package no.nav.helse.flex.lovmefilter
 
-import no.nav.syfo.kafka.felles.SoknadsstatusDTO
-import no.nav.syfo.kafka.felles.SoknadstypeDTO
 import no.nav.syfo.kafka.felles.SporsmalDTO
 import no.nav.syfo.kafka.felles.SvarDTO
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 /**
@@ -18,12 +16,8 @@ class LovmeFilterTest {
 
     @Test
     fun `Svar JA på brukerspørsmål om arbeidet i utlandet blir mappet til TRUE`() {
-        val sykepengesoknadDTO = SykepengesoknadDTO(
-            ID,
-            SoknadstypeDTO.ARBEIDSTAKERE,
-            SoknadsstatusDTO.SENDT,
-            FNR,
-            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA"))))
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA")))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
@@ -33,12 +27,8 @@ class LovmeFilterTest {
 
     @Test
     fun `Svar NEI på brukerspørsmål om arbeidet i utlandet blir mappet til FALSE`() {
-        val sykepengesoknadDTO = SykepengesoknadDTO(
-            ID,
-            SoknadstypeDTO.ARBEIDSTAKERE,
-            SoknadsstatusDTO.SENDT,
-            FNR,
-            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("NEI"))))
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("NEI")))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
@@ -48,12 +38,8 @@ class LovmeFilterTest {
 
     @Test
     fun `Brukerspørsmål om arbeidet i utlandet er ikke besvart returnerer NULL`() {
-        val sykepengesoknadDTO = SykepengesoknadDTO(
-            ID,
-            SoknadstypeDTO.ARBEIDSTAKERE,
-            SoknadsstatusDTO.SENDT,
-            FNR,
-            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = null))
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO(null)))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
@@ -63,19 +49,56 @@ class LovmeFilterTest {
 
     @Test
     fun `Brukerspørsmål om arbeidet i utlandet returnerer NULL hvis spørsmålet ikke finnes`() {
-        val sykepengesoknadDTO = SykepengesoknadDTO(
-            ID,
-            SoknadstypeDTO.ARBEIDSTAKERE,
-            SoknadsstatusDTO.SENDT,
-            FNR,
-            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ANNET", svar = listOf(SvarDTO("NEI"))))
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ANNET", svar = listOf(SvarDTO(null)))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
 
         assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
     }
-}
 
-private const val ID = "4d4e41de-5c19-4e2d-b408-b809c37e6cfa"
-private const val FNR = "01010112345"
+    @Test
+    fun `Mapping til LovemeSoknadDTO kaster NullPointerException hvis startSyketilfelle ikke er satt`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            startSyketilfelle = null,
+        )
+
+        assertThatThrownBy {
+            sykepengesoknadDTO.tilLovmeSoknadDTO()
+        }.isInstanceOf(NullPointerException::class.java)
+    }
+
+    @Test
+    fun `Mapping til LovemeSoknadDTO kaster NullPointerException hvis fom ikke er satt`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            fom = null,
+        )
+
+        assertThatThrownBy {
+            sykepengesoknadDTO.tilLovmeSoknadDTO()
+        }.isInstanceOf(NullPointerException::class.java)
+    }
+
+    @Test
+    fun `Mapping til LovemeSoknadDTO kaster NullPointerException hvis tom ikke er satt`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            tom = null,
+        )
+
+        assertThatThrownBy {
+            sykepengesoknadDTO.tilLovmeSoknadDTO()
+        }.isInstanceOf(NullPointerException::class.java)
+    }
+
+    @Test
+    fun `Mapping til LovemeSoknadDTO kaster NullPointerException hvis sendtNav ikke er satt`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            sendtNav = null,
+        )
+
+        assertThatThrownBy {
+            sykepengesoknadDTO.tilLovmeSoknadDTO()
+        }.isInstanceOf(NullPointerException::class.java)
+    }
+}

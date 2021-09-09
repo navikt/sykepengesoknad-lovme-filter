@@ -21,25 +21,29 @@ Verdier fra en `SykepengesoknadDTO` brukees til å konstruere følgende LovmeSok
 
 ```kotlin
 data class LovmeSoknadDTO(
-    val id: String,
-    val type: String,
-    val status: String,
-    val fnr: String,
-    val korrigerer: String? = null,
-    val startSyketilfelle: LocalDate? = null,
-    val sendtNav: LocalDateTime? = null,
-    val fom: LocalDate? = null,
-    val tom: LocalDate? = null,
-    // Kun True eller False hvis bruker har svar JA eller NEI.
-    val arbeidUtenforNorge: Boolean? = null
+   val id: String,
+   val type: SoknadstypeDTO,
+   val status: SoknadsstatusDTO,
+   val fnr: String,
+   val korrigerer: String? = null,
+   val startSyketilfelle: LocalDate,
+   val sendtNav: LocalDateTime,
+   val fom: LocalDate,
+   val tom: LocalDate,
+   // Kun True eller False hvis bruker har svar JA eller NEI.
+   val arbeidUtenforNorge: Boolean? = null
 )
 ```
 
 Følgende regler gjelder:
 
 1. Viderersending fra topic `flex.sykepengesoknad` til `flex.sykepengesoknad-lovme-filter` skjer kun
-   hvis `status? er "SENDT" og `type` er "ARBEIDSTAKERE".`
-2. Hvis søknaden korrigerer en tidligere søknad får den ny `id`, og feltet `korrigerer` vil inneholde verdien av den
-   korrigerte søknaden.
-3. Hvis bruker har svar `JA` på spørsmål om arbeid i utlandet, vil `arbeidUtenforNorge` være `true`. Ellers `false`.
+   hvis:
+   1. `status` er `SoknadsstatusDTO.SENDT`
+   2. `type` er `SoknadstypeDTO.ARBEIDSTAKERE`
+   3. `sendtNav` er satt
+2. Hvis søknaden korrigerer en tidligere søknad får den ny `id`, men feltet `korrigerer` vil inneholde verdien av den
+   opprinnelige søknaden.
+3. Hvis bruker har svar `JA` på spørsmål om arbeid i utlandet, vil `arbeidUtenforNorge` være `true`. `NEI` gir  `false`, 
+   og verdien er `null` hvis spørsmålet ikke er besvart.
 

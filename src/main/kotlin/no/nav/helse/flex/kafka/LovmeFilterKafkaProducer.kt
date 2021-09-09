@@ -21,15 +21,9 @@ class LovmeFilterKafkaProducer(
 
     fun produserMelding(lovmeSoknadDTO: LovmeSoknadDTO): RecordMetadata {
         try {
-            val recordMetadata = producer.send(
+            return producer.send(
                 ProducerRecord(LOVME_FILTER_TOPIC, lovmeSoknadDTO.id, lovmeSoknadDTO)
             ).get()
-
-            log.info(
-                "Sendt filtrert sykepengesøknad med [id=${lovmeSoknadDTO.id}], [status=${lovmeSoknadDTO.status}] " +
-                    "og [type=${lovmeSoknadDTO.type}] til [topic=$LOVME_FILTER_TOPIC]."
-            )
-            return recordMetadata
         } catch (e: Throwable) {
             log.error(
                 "Feil ved sending av filtrert søknad med [id=${lovmeSoknadDTO.id}] til [topic=$LOVME_FILTER_TOPIC].",
