@@ -27,15 +27,18 @@ fun SykepengesoknadDTO.tilLovmeSoknadDTO(): LovmeSoknadDTO {
     // Status og Type er typer som tilhører SykepengesoknadDTO, men de blir serialisert til JSON og ikke eksponert
     // utenfor prosjektet.
     return LovmeSoknadDTO(
-        this.id,
-        this.type,
-        this.status,
-        this.fnr,
-        this.korrigerer,
-        this.startSyketilfelle,
-        this.sendtNav,
-        this.fom,
-        this.tom,
-        arbeidUtenforNorge
+        id = this.id,
+        type = this.type,
+        status = this.status,
+        fnr = this.fnr,
+        korrigerer = this.korrigerer,
+        // Dato for start av syketilfelle kan aldri være null.
+        startSyketilfelle = this.startSyketilfelle!!,
+        // Vi vet sendtNav ikke er null siden den er brukt i filtrering.
+        sendtNav = this.sendtNav!!,
+        // Det er kun utlandssøknad som ikke har fom og tom satt.
+        fom = this.fom!!,
+        tom = this.tom!!,
+        arbeidUtenforNorge = arbeidUtenforNorge
     )
 }
