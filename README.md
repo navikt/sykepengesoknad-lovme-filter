@@ -1,7 +1,6 @@
 # sykepengesoknad-lovme-filter
 
-Applikasjon som lytter på Kafka-topic for sykepengesøknader videresender en redusert versjon av meldigner med en gitt
-status til en topic ment for Team LovMe.
+Applikasjon som lytter på Kafka-topic for sykepengesøknader. Søknader med gitt status og type blir videresendt i en redusert på et nytt topic som applikasjonen `medlemskap-sykepenger-listener`, eid av Team LovMe, lytter på.
 
 ## Rettigheter
 
@@ -35,7 +34,7 @@ data class LovmeSoknadDTO(
 )
 ```
 
-Følgende regler gjelder:
+## Videresendingsregler
 
 1. Viderersending fra topic `flex.sykepengesoknad` til `flex.sykepengesoknad-lovme-filter` skjer kun
    hvis:
