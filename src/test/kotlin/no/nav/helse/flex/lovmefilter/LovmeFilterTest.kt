@@ -60,6 +60,21 @@ class LovmeFilterTest {
 
         assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
     }
+
+    @Test
+    fun `Håndterer tom liste som svar - Dette skjer ved automatisk innsending`() {
+        val sykepengesoknadDTO = SykepengesoknadDTO(
+            ID,
+            SoknadstypeDTO.ARBEIDSTAKERE,
+            SoknadsstatusDTO.SENDT,
+            FNR,
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = emptyList()))
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
+    }
 }
 
 private const val ID = "4d4e41de-5c19-4e2d-b408-b809c37e6cfa"

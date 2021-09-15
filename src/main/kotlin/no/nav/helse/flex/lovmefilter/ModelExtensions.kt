@@ -15,10 +15,9 @@ fun String.tilLovmeSoknadDTO(): LovmeSoknadDTO = objectMapper.readValue(this)
  * @see LovmeFilter
  */
 fun SykepengesoknadDTO.tilLovmeSoknadDTO(): LovmeSoknadDTO {
-    // Hent svar på brukerspørsmål om arbeid utenfor Norge. Det skal være bare ett svar spørsmålet, så det
-    // første elementet kan brukes hvis det finnes.
+    // Hent svar på brukerspørsmål om arbeid utenfor Norge.
     val sporsmalDTO = this.sporsmal?.first { dto -> dto.tag.equals("ARBEID_UTENFOR_NORGE") }
-    val arbeidUtenforNorge = when (sporsmalDTO?.svar?.get(0)?.verdi) {
+    val arbeidUtenforNorge = when (sporsmalDTO?.svar?.firstOrNull()?.verdi) {
         "JA" -> true
         "NEI" -> false
         else -> null
