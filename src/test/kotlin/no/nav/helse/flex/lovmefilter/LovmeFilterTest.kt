@@ -48,6 +48,17 @@ class LovmeFilterTest {
     }
 
     @Test
+    fun `Brukerspørsmål om arbeidet i utlandet ikke er besvart i automatisk innsendt søknad returnerer NULL`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = emptyList())),
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isNull()
+    }
+
+    @Test
     fun `Brukerspørsmål om arbeidet i utlandet returnerer NULL hvis spørsmålet ikke finnes`() {
         val sykepengesoknadDTO = templateDTO.copy(
             sporsmal = listOf(SporsmalDTO(id = "1", tag = "ANNET", svar = listOf(SvarDTO(null)))),
