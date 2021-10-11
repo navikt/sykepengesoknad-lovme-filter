@@ -10,9 +10,11 @@ import java.time.LocalDateTime
  */
 data class LovmeSoknadDTO(
     val id: String,
-    // DTO med type fra ekstern DTO, men DTO blir serialisert til JSON, og blir ikke eksponert ut av prosjektet.
+    // DTO fra https://github.com/navikt/syfokafka, men blir serialisert til JSON sånn at den
+    // ikke blir ikke eksponert ut av prosjektet.
     val type: SoknadstypeDTO,
-    // DTO med type fra ekstern DTO, men DTO blir serialisert til JSON, og blir ikke eksponert ut av prosjektet.
+    // DTO fra https://github.com/navikt/syfokafka, men blir serialisert til JSON sånn at den
+    // ikke blir ikke eksponert ut av prosjektet.
     val status: SoknadsstatusDTO,
     val fnr: String,
     val korrigerer: String? = null,

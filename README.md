@@ -16,7 +16,7 @@ acl:
 
 ## Funksjonalitet
 
-Verdier fra en `SykepengesoknadDTO` brukees til å konstruere følgende LovmeSoknadDTO:
+Verdier fra en `SykepengesoknadDTO` brukes til å konstruere følgende LovmeSoknadDTO:
 
 ```kotlin
 data class LovmeSoknadDTO(
@@ -32,6 +32,35 @@ data class LovmeSoknadDTO(
    // Kun True eller False hvis bruker har svar JA eller NEI.
    val arbeidUtenforNorge: Boolean? = null
 )
+```
+`SoknadstypeDTO` og `SoknadsstatusDTO` ligger i [https://github.com/navikt/syfokafka](https://github.com/navikt/syfokafka) og ser sånn ut:
+
+SoknadstypeDTO:
+
+```kotlin
+enum class SoknadstypeDTO {
+    SELVSTENDIGE_OG_FRILANSERE,
+    OPPHOLD_UTLAND,
+    ARBEIDSTAKERE,
+    ANNET_ARBEIDSFORHOLD,
+    ARBEIDSLEDIG,
+    BEHANDLINGSDAGER,
+    REISETILSKUDD,
+    GRADERT_REISETILSKUDD,
+}
+```
+
+SoknadstypeDTO:
+
+```kotlin
+enum class SoknadsstatusDTO {
+    NY,
+    SENDT,
+    FREMTIDIG,
+    KORRIGERT,
+    AVBRUTT,
+    SLETTET
+}
 ```
 
 ## Videresendingsregler
