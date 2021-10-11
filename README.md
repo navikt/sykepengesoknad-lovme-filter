@@ -63,6 +63,24 @@ enum class SoknadsstatusDTO {
 }
 ```
 
+Eksempel på melding som JSON: 
+
+```json
+{
+  "id" : "8f0b25ab-0fad-497d-960a-94370345d269",
+  "type" : "ARBEIDSTAKERE",
+  "status" : "SENDT",
+  "fnr" : "01010112345",
+  "korrigerer" : null,
+  "startSyketilfelle" : "2021-09-01",
+  "sendtNav" : "2021-10-11T15:35:53.471168",
+  "fom" : "2021-09-01",
+  "tom" : "2021-09-30",
+  "arbeidUtenforNorge" : false
+}
+```
+
+
 ## Videresendingsregler
 
 1. Viderersending fra topic `flex.sykepengesoknad` til `flex.sykepengesoknad-lovme-filter` skjer kun
