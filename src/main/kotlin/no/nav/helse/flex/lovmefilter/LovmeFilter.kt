@@ -24,7 +24,7 @@ class LovmeFilter(
             lovmeFilterProducer.produserMelding(lovmeSoknadDTO)
 
             log.info(
-                "Sendt filtrert sykepengesøknad med" +
+                "Sendt filtrert sykepengesøknad med: " +
                     "[id=${lovmeSoknadDTO.id}], " +
                     "[status=${lovmeSoknadDTO.status}], " +
                     "[type=${lovmeSoknadDTO.type}] og " +
