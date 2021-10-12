@@ -16,7 +16,7 @@ spec:
     partitions: 3
     replication: 3
     retentionBytes: -1    # Messages will never get deleted because of disk space
-    retentionHours: 6576  # Messages are stored for 6 months
+    retentionHours: 1
   acl:
     - team: flex
       application: sykepengesoknad-lovme-filter
