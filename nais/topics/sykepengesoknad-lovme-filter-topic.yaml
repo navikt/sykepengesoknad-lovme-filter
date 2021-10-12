@@ -21,6 +21,6 @@ spec:
     - team: flex
       application: sykepengesoknad-lovme-filter
       access: write
-    - team: lovme
+    - team: medlemskap
       application: medlemskap-sykepenger-listener
       access: read
