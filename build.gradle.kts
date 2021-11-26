@@ -4,8 +4,8 @@ plugins {
     id("org.springframework.boot") version "2.5.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
-    kotlin("jvm") version "1.5.31"
-    kotlin("plugin.spring") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
+    kotlin("plugin.spring") version "1.6.0"
 }
 
 group = "no.nav.helse.flex"
@@ -33,7 +33,7 @@ repositories {
     }
 }
 
-val testContainersVersion = "1.16.0"
+val testContainersVersion = "1.16.2"
 val logstashLogbackEncoderVersion = "6.6"
 val mockitoKotlinVersion = "2.2.0"
 val kluentVersion = "1.68"
