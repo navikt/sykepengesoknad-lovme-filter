@@ -27,8 +27,9 @@ class LovmeFilter(
                 "Sendt filtrert sykepengesøknad med: " +
                     "[id=${lovmeSoknadDTO.id}], " +
                     "[status=${lovmeSoknadDTO.status}], " +
-                    "[type=${lovmeSoknadDTO.type}] og " +
-                    "[sendtNav=${lovmeSoknadDTO.sendtNav}] til " +
+                    "[type=${lovmeSoknadDTO.type}], " +
+                    "[sendtNav=${lovmeSoknadDTO.sendtNav}] og " +
+                    "[ettersending=${lovmeSoknadDTO.ettersending}] til " +
                     "[topic=$LOVME_FILTER_TOPIC]."
             )
         }
