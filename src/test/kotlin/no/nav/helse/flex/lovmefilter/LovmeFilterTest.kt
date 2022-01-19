@@ -15,29 +15,29 @@ import org.junit.jupiter.api.Test
 class LovmeFilterTest {
 
     @Test
-    fun `Svar JA på brukerspørsmål om arbeidet i utlandet blir mappet til TRUE`() {
+    fun `Svar JA på brukerspørsmål om arbeidet i utlandet blir mappet til True`() {
         val sykepengesoknadDTO = templateDTO.copy(
             sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA")))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
 
-        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(true)
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isTrue
     }
 
     @Test
-    fun `Svar NEI på brukerspørsmål om arbeidet i utlandet blir mappet til FALSE`() {
+    fun `Svar NEI på brukerspørsmål om arbeidet i utlandet blir mappet til False`() {
         val sykepengesoknadDTO = templateDTO.copy(
             sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("NEI")))),
         )
 
         val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
 
-        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isEqualTo(false)
+        assertThat(lovmeSoknadDTO.arbeidUtenforNorge).isFalse
     }
 
     @Test
-    fun `Brukerspørsmål om arbeidet i utlandet er ikke besvart returnerer NULL`() {
+    fun `Brukerspørsmål om arbeidet i utlandet er ikke besvart returnerer Null`() {
         val sykepengesoknadDTO = templateDTO.copy(
             sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO(null)))),
         )
@@ -48,7 +48,7 @@ class LovmeFilterTest {
     }
 
     @Test
-    fun `Brukerspørsmål om arbeidet i utlandet ikke er besvart i automatisk innsendt søknad returnerer NULL`() {
+    fun `Brukerspørsmål om arbeidet i utlandet ikke er besvart i automatisk innsendt søknad returnerer Null`() {
         val sykepengesoknadDTO = templateDTO.copy(
             sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = emptyList())),
         )
@@ -111,5 +111,38 @@ class LovmeFilterTest {
         assertThatThrownBy {
             sykepengesoknadDTO.tilLovmeSoknadDTO()
         }.isInstanceOf(NullPointerException::class.java)
+    }
+
+    @Test
+    fun `Ikke satt ettersending mappes til False`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA")))),
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.ettersending).isFalse
+    }
+
+    @Test
+    fun `Er ikke ettersending mappes til False`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA")))), ettersending = false,
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.ettersending).isFalse
+    }
+
+    @Test
+    fun `Er ettersending mappes til True`() {
+        val sykepengesoknadDTO = templateDTO.copy(
+            sporsmal = listOf(SporsmalDTO(id = "1", tag = "ARBEID_UTENFOR_NORGE", svar = listOf(SvarDTO("JA")))), ettersending = true,
+        )
+
+        val lovmeSoknadDTO = sykepengesoknadDTO.tilLovmeSoknadDTO()
+
+        assertThat(lovmeSoknadDTO.ettersending).isTrue()
     }
 }
