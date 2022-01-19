@@ -14,9 +14,12 @@ import org.apache.kafka.clients.consumer.Consumer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.*
 
 /**
  * Integrasjonstest som starter applikasjonen og en Kafka Docker container. Verifiserer at meldinger blir sendt,
@@ -38,6 +41,11 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     @BeforeAll
     fun subscribeTilLovmeFilterTopic() {
         lovmeFilterKafkaConsumer.lyttPaaTopic(LOVME_FILTER_TOPIC)
+    }
+
+    @BeforeEach
+    @AfterEach
+    fun sjekkAtTopicErTomt() {
         lovmeFilterKafkaConsumer.hentRecords().shouldBeEmpty()
     }
 
@@ -55,6 +63,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
         )
 
         val consumerRecord = lovmeFilterKafkaConsumer.ventPaaRecords(antall = 1).first()
+
         val lovmeSoknadDTO = consumerRecord.value().tilLovmeSoknadDTO()
 
         assertThat(lovmeSoknadDTO.id).isEqualTo(sykepengesoknadDTO.id)
@@ -70,7 +79,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     }
 
     @Test
-    fun `Videresend kun søknader med type ARBEIDSTAKERE til LovMe topic`() {
+    fun `Kun søknader med type ARBEIDSTAKERE blir videresendt på LovMe topic`() {
         val sykepengeSoknader = listOf(
             templateDTO.copy(type = SoknadstypeDTO.SELVSTENDIGE_OG_FRILANSERE),
             templateDTO.copy(type = SoknadstypeDTO.OPPHOLD_UTLAND),
@@ -93,7 +102,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     }
 
     @Test
-    fun `Videresend kun søknader med status SENDT til lovme topic`() {
+    fun `Kun søknader med status SENDT blir videresent til LovMe topic`() {
         val soknader = listOf(
             templateDTO.copy(status = SoknadsstatusDTO.SENDT),
             templateDTO.copy(status = SoknadsstatusDTO.KORRIGERT),
@@ -114,7 +123,7 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
     }
 
     @Test
-    fun `Kun søknaded send til NAV blir Videresend til lovme topic`() {
+    fun `Kun søknader send til NAV blir Videresend til LovMe topic`() {
         val soknader = listOf(
             templateDTO,
             templateDTO.copy(sendtNav = null),
@@ -128,5 +137,13 @@ class LovmeFilterIntegrationTest : AbstractContainerBaseTest() {
         val lovmeSoknadDTO = consumerRecord.value().tilLovmeSoknadDTO()
 
         assertThat(lovmeSoknadDTO.sendtNav).isEqualTo(soknader[0].sendtNav)
+    }
+
+    @Test
+    fun `Ettersendte søknader blir ikke videresent til LovMe topic`() {
+        val soknad = templateDTO.copy(id = UUID.randomUUID().toString(), ettersending = true)
+        lovmeFilter.sendLovmeSoknad(soknad)
+
+        lovmeFilterKafkaConsumer.ventPaaRecords(0)
     }
 }

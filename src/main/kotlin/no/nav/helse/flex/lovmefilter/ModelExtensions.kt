@@ -35,7 +35,6 @@ fun SykepengesoknadDTO.tilLovmeSoknadDTO(): LovmeSoknadDTO {
         startSyketilfelle = this.startSyketilfelle!!,
         // Vi vet sendtNav ikke er null siden den er brukt i filtrering.
         sendtNav = this.sendtNav!!,
-        ettersending = this.ettersending,
         // Det er kun utlandssøknad som ikke har fom og tom satt.
         fom = this.fom!!,
         tom = this.tom!!,

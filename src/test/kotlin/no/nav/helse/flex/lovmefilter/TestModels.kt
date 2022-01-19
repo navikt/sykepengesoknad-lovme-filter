@@ -15,5 +15,6 @@ val templateDTO = SykepengesoknadDTO(
     startSyketilfelle = LocalDate.of(2021, 1, 1),
     fom = LocalDate.of(2021, 1, 1),
     tom = LocalDate.of(2021, 1, 31),
-    sendtNav = LocalDateTime.of(2021, 1, 2, 12, 0)
+    sendtNav = LocalDateTime.of(2021, 1, 2, 12, 0),
+    ettersending = false
 )
