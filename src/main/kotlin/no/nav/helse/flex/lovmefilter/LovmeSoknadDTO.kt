@@ -20,7 +20,6 @@ data class LovmeSoknadDTO(
     val korrigerer: String? = null,
     val startSyketilfelle: LocalDate,
     val sendtNav: LocalDateTime,
-    val ettersending: Boolean,
     val fom: LocalDate,
     val tom: LocalDate,
     // Kun True eller False hvis bruker har svar JA eller NEI.

@@ -19,17 +19,15 @@ class LovmeFilter(
     val log = logger()
 
     fun sendLovmeSoknad(sykepengeSoknadDTO: SykepengesoknadDTO) {
-        if (soknadSkalSendeTeamLovMe(sykepengeSoknadDTO)) {
+        if (soknadSkalSendesTeamLovMe(sykepengeSoknadDTO)) {
             val lovmeSoknadDTO = sykepengeSoknadDTO.tilLovmeSoknadDTO()
             lovmeFilterProducer.produserMelding(lovmeSoknadDTO)
 
             log.info(
                 "Sendt filtrert sykepengesøknad med: " +
                     "[id=${lovmeSoknadDTO.id}], " +
-                    "[status=${lovmeSoknadDTO.status}], " +
-                    "[type=${lovmeSoknadDTO.type}], " +
-                    "[sendtNav=${lovmeSoknadDTO.sendtNav}] og " +
-                    "[ettersending=${lovmeSoknadDTO.ettersending}] til " +
+                    "[status=${lovmeSoknadDTO.status}] og " +
+                    "[type=${lovmeSoknadDTO.type}] til " +
                     "[topic=$LOVME_FILTER_TOPIC]."
             )
         }
@@ -39,7 +37,7 @@ class LovmeFilter(
 /**
  * Funksjon med som avgjør om en sykepengesøknad skal videresende til Team LovMe.
  */
-fun soknadSkalSendeTeamLovMe(sykepengeSoknadDTO: SykepengesoknadDTO) =
+fun soknadSkalSendesTeamLovMe(sykepengeSoknadDTO: SykepengesoknadDTO) =
     sykepengeSoknadDTO.status == SoknadsstatusDTO.SENDT &&
         sykepengeSoknadDTO.type == SoknadstypeDTO.ARBEIDSTAKERE &&
-        sykepengeSoknadDTO.sendtNav != null
+        sykepengeSoknadDTO.sendtNav != null && !sykepengeSoknadDTO.ettersending
