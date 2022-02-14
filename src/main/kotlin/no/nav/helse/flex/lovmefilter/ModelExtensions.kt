@@ -2,7 +2,7 @@ package no.nav.helse.flex.lovmefilter
 
 import com.fasterxml.jackson.module.kotlin.readValue
 import no.nav.helse.flex.objectMapper
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 
 fun String.tilSykepengeSoknadDTO(): SykepengesoknadDTO = objectMapper.readValue(this)
 
