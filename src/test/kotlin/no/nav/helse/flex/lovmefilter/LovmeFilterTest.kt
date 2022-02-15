@@ -1,7 +1,6 @@
 package no.nav.helse.flex.lovmefilter
 
-import no.nav.syfo.kafka.felles.SporsmalDTO
-import no.nav.syfo.kafka.felles.SvarDTO
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test

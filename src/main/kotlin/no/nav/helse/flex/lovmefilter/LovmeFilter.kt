@@ -3,9 +3,7 @@ package no.nav.helse.flex.lovmefilter
 import no.nav.helse.flex.kafka.LOVME_FILTER_TOPIC
 import no.nav.helse.flex.kafka.LovmeFilterKafkaProducer
 import no.nav.helse.flex.logger
-import no.nav.syfo.kafka.felles.SoknadsstatusDTO
-import no.nav.syfo.kafka.felles.SoknadstypeDTO
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 import org.springframework.stereotype.Service
 
 /**

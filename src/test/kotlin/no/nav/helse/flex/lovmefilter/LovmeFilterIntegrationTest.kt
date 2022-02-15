@@ -5,10 +5,8 @@ import no.nav.helse.flex.hentRecords
 import no.nav.helse.flex.kafka.LOVME_FILTER_TOPIC
 import no.nav.helse.flex.kafka.SYKEPENGESOKNAD_TOPIC
 import no.nav.helse.flex.lyttPaaTopic
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 import no.nav.helse.flex.ventPaaRecords
-import no.nav.syfo.kafka.felles.SoknadsstatusDTO
-import no.nav.syfo.kafka.felles.SoknadstypeDTO
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
 import org.amshove.kluent.shouldBeEmpty
 import org.apache.kafka.clients.consumer.Consumer
 import org.apache.kafka.clients.producer.KafkaProducer

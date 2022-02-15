@@ -22,10 +22,7 @@ repositories {
     }
 
     maven {
-        url = uri("https://maven.pkg.github.com/navikt/freg-security")
-    }
-    maven {
-        url = uri("https://maven.pkg.github.com/navikt/syfosm-common")
+        url = uri("https://maven.pkg.github.com/navikt/sykepengesoknad-kafka")
         credentials {
             username = githubUser
             password = githubPassword
@@ -37,7 +34,7 @@ val testContainersVersion = "1.16.3"
 val logstashLogbackEncoderVersion = "7.0.1"
 val mockitoKotlinVersion = "2.2.0"
 val kluentVersion = "1.68"
-val syfoKafkaVersion = "2021.07.20-09.39-6be2c52c"
+val sykepengesoknadKafkaVersion = "2022.02.10-16.07-0892e94a"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
@@ -50,7 +47,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("no.nav.syfo.kafka:felles:$syfoKafkaVersion")
+    implementation("no.nav.helse.flex:sykepengesoknad-kafka:$sykepengesoknadKafkaVersion")
     implementation("io.micrometer:micrometer-registry-prometheus")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -67,7 +64,7 @@ tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "16"
+        jvmTarget = "17"
         kotlinOptions.allWarningsAsErrors = true
     }
 }

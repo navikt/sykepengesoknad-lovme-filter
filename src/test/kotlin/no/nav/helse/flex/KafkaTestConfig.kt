@@ -2,7 +2,7 @@ package no.nav.helse.flex
 
 import no.nav.helse.flex.kafka.JacksonKafkaSerializer
 import no.nav.helse.flex.kafka.KafkaConfig
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer

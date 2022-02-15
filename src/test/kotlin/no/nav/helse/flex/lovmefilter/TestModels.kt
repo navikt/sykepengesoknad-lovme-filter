@@ -1,8 +1,6 @@
 package no.nav.helse.flex.lovmefilter
 
-import no.nav.syfo.kafka.felles.SoknadsstatusDTO
-import no.nav.syfo.kafka.felles.SoknadstypeDTO
-import no.nav.syfo.kafka.felles.SykepengesoknadDTO
+import no.nav.helse.flex.sykepengesoknad.kafka.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 
