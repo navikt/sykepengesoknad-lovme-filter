@@ -11,7 +11,7 @@ abstract class AbstractContainerBaseTest {
 
     companion object {
         init {
-            KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.0")).also {
+            KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.0.1")).also {
                 it.start()
                 System.setProperty("KAFKA_BROKERS", it.bootstrapServers)
             }
