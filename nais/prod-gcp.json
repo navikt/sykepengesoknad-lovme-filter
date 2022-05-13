@@ -1,6 +1,0 @@
-{
-  "app": "sykepengesoknad-lovme-filter",
-  "namespace": "flex",
-  "team": "flex",
-  "kafkaPool": "nav-prod"
-}
