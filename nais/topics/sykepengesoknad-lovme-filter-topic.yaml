@@ -8,6 +8,7 @@ metadata:
   annotations:
     dcat.data.nav.no/title: "flex.sykpengesoknad-lovme-filter"
     dcat.data.nav.no/description: "Topic for filterte sykepengesøknader sent til LovMe"
+    kafka.nais.io/removeDataWhenResourceIsDeleted: "true"
 spec:
   pool: {{kafkaPool}}
   config:
